@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
@@ -20,7 +19,7 @@ const customStyles = {
 };
 
 const Calendar = () => {
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState(getEventsFromLocalStorage());
   const [newEvent, setNewEvent] = useState({ title: '', description: '', start_time: '', end_time: '' });
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -50,7 +49,9 @@ const Calendar = () => {
   const handleAddEvent = () => {
     axios.post('http://localhost:3000/events', newEvent)
       .then(response => {
-        setEvents([...events, response.data]);
+        const updatedEvents = [...events, response.data];
+        setEvents(updatedEvents);
+        saveEventsToLocalStorage(updatedEvents);
         setNewEvent({ title: '', description: '', start_time: '', end_time: '' });
         setIsFormVisible(false);
       });
@@ -59,7 +60,9 @@ const Calendar = () => {
   const handleDeleteEvent = (eventId) => {
     axios.delete(`http://localhost:3000/events/${eventId}`)
       .then(() => {
-        setEvents(events.filter(event => event.id !== eventId));
+        const updatedEvents = events.filter(event => event.id !== eventId);
+        setEvents(updatedEvents);
+        saveEventsToLocalStorage(updatedEvents);
       });
   };
 
@@ -176,3 +179,13 @@ const Calendar = () => {
 };
 
 export default Calendar;
+
+const saveEventsToLocalStorage = (events) => {
+  localStorage.setItem('events', JSON.stringify(events));
+}
+
+
+const getEventsFromLocalStorage = () => {
+  const storedEvents = localStorage.getItem('events');
+  return storedEvents ? JSON.parse(storedEvents) : [];
+}
