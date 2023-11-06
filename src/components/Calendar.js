@@ -1,80 +1,4 @@
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
 
-// const Calendar = () => {
-//   const [events, setEvents] = useState([]);
-//   const [newEvent, setNewEvent] = useState({ title: '', description: '', start_time: '', end_time: '' });
-
-//   useEffect(() => {
-//     // Chargez la liste des événements depuis le backend lors du chargement initial
-//     axios.get('http://localhost:3000/events')
-//       .then(response => setEvents(response.data));
-//   }, []);
-
-//   const handleAddEvent = () => {
-//     // Envoyez un nouvel événement au backend et mettez à jour la liste d'événements
-//     axios.post('http://localhost:3000/events', newEvent)
-//       .then(response => {
-//         setEvents([...events, response.data]);
-//         setNewEvent({ title: '', description: '', start_time: '', end_time: '' });
-//       });
-//   };
-
-//   const handleDeleteEvent = (eventId) => {
-//     // Supprimez un événement du backend et mettez à jour la liste d'événements
-//     axios.delete(`http://localhost:3000/events/${eventId}`)
-//       .then(() => {
-//         setEvents(events.filter(event => event.id !== eventId));
-//       });
-//   };
-// Définissez la variable eventColors comme une constante
-//const eventColors = ['#ff5733', '#33ff57', '#5733ff', '#ff33f4', '#33fff4'];
-
-
-//   return (
-//     <div>
-//       <h1>Calendrier</h1>
-//       <ul>
-//         {events.map(event => (
-//           <li key={event.id}>
-//             {event.title} - {event.start_time} to {event.end_time}
-//             <button onClick={() => handleDeleteEvent(event.id)}>Supprimer</button>
-//           </li>
-//         ))}
-//       </ul>
-//       <div>
-//         <input
-//           type="text"
-//           placeholder="Titre"
-//           value={newEvent.title}
-//           onChange={e => setNewEvent({ ...newEvent, title: e.target.value })}
-//         />
-//         <input
-//           type="text"
-//           placeholder="Description"
-//           value={newEvent.description}
-//           onChange={e => setNewEvent({ ...newEvent, description: e.target.value })}
-//         />
-//         <input
-//           type="datetime-local"
-//           placeholder="Heure de début"
-//           value={newEvent.start_time}
-//           onChange={e => setNewEvent({ ...newEvent, start_time: e.target.value })}
-//         />
-//         <input
-//           type="datetime-local"
-//           placeholder="Heure de fin"
-//           value={newEvent.end_time}
-//           onChange={e => setNewEvent({ ...newEvent, end_time: e.target.value })}
-//         />
-//         <button onClick={handleAddEvent}>Ajouter</button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Calendar;
-//const eventColors = ['#ff5733', '#33ff57', '#5733ff', '#ff33f4', '#33fff4'];
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
@@ -252,4 +176,3 @@ const Calendar = () => {
 };
 
 export default Calendar;
-

@@ -1,12 +1,12 @@
-import Calendar from './components/Calendar'; // Importez votre composant Calendar
+import Calendar from './components/Calendar';
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Mon Application de Calendrier</h1>
-        <Calendar /> {/* Incluez ici votre composant Calendar */}
+        <h1>Flying For You</h1>
+        <Calendar />
       </header>
     </div>
   );
